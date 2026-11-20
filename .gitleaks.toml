@@ -1,0 +1,7 @@
+# tests/test_redact.py holds fake keys on purpose: it checks that every common key format is masked.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "redaction test fixtures"
+paths = ['''^tests/test_redact\.py$''']

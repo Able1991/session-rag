@@ -1,5 +1,7 @@
 # session-rag
 
+[![CI](https://github.com/Able1991/session-rag/actions/workflows/ci.yml/badge.svg)](https://github.com/Able1991/session-rag/actions/workflows/ci.yml)
+[![Security](https://github.com/Able1991/session-rag/actions/workflows/security.yml/badge.svg)](https://github.com/Able1991/session-rag/actions/workflows/security.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 ![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)
 ![MCP](https://img.shields.io/badge/MCP-server-8A2BE2)
@@ -281,6 +283,13 @@ the questions; copying words from the answer flatters lexical search.
 - Code is not indexed on purpose. For code, grep, LSP and reading files are always current, while an
   index goes stale with every commit.
 
+## Security
+
+Every push to `main` and a weekly schedule run Gitleaks over the full history, Semgrep, CodeQL (Python and the
+workflows) and pip-audit over the locked dependencies; any critical finding turns the Security badge red. Actions
+are pinned by SHA and Dependabot keeps them and the Python dependencies current. Threat model and how to report a
+vulnerability: [SECURITY.md](SECURITY.md).
+
 ## Development
 
 ```bash
@@ -289,7 +298,8 @@ uv run pytest
 uv run ruff check src tests
 ```
 
-Tests use a deterministic hash embedder (`SESSION_RAG_MODEL=hash`), so they need no model download.
+Tests use a deterministic hash embedder (`SESSION_RAG_MODEL=hash`), so they need no model download. See
+[CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 

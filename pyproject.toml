@@ -46,6 +46,7 @@ select = ["E", "F", "I", "B", "UP"]
 
 [tool.ruff.lint.per-file-ignores]
 "tests/*" = ["E501"]
+"src/session_rag/digest.py" = ["E501"]  # a nosemgrep comment needs the full rule id on one line
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
