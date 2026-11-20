@@ -66,8 +66,13 @@ def install_server(port: int = 47817) -> str:
     Register it in ~/.claude.json as {"type": "http", "url": "http://127.0.0.1:<port>/mcp"} instead of the stdio
     command, so a new session connects to it instead of starting a copy with its own model (~1 GB each)."""
     cmd = _command("serve", "--http", "--port", str(port))
-    env = {"HF_HUB_OFFLINE": "1", "PATH": _path(), "SESSION_RAG_THREADS": "2", "OMP_NUM_THREADS": "2",
-           "TOKENIZERS_PARALLELISM": "false"}
+    env = {
+        "HF_HUB_OFFLINE": "1",
+        "PATH": _path(),
+        "SESSION_RAG_THREADS": "2",
+        "OMP_NUM_THREADS": "2",
+        "TOKENIZERS_PARALLELISM": "false",
+    }
     if sys.platform == "darwin":
         from .config import DATA_DIR
 

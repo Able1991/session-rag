@@ -71,10 +71,20 @@ def _call_claude(text: str, prompt: str = PROMPT) -> str:
         raise SystemExit("claude CLI not found in PATH")
     proc = subprocess.run(
         [
-            exe, "-p", "--model", MODEL, "--no-session-persistence", "--output-format", "text", "--tools", "",
+            exe,
+            "-p",
+            "--model",
+            MODEL,
+            "--no-session-persistence",
+            "--output-format",
+            "text",
+            "--tools",
+            "",
             # No MCP servers: each one (e.g. a plugin's `npx firebase mcp`, ~500 MB) outlives `claude -p`
             # and leaks; hundreds of digest calls once exhausted RAM and panicked the Mac.
-            "--strict-mcp-config", "--mcp-config", '{"mcpServers":{}}',
+            "--strict-mcp-config",
+            "--mcp-config",
+            '{"mcpServers":{}}',
         ],
         input=prompt + text,
         capture_output=True,
