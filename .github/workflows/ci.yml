@@ -9,6 +9,8 @@ jobs:
         os: [ubuntu-latest, macos-latest]
         python: ["3.11", "3.13"]
     runs-on: ${{ matrix.os }}
+    env:
+      UV_PYTHON_PREFERENCE: only-managed  # system Pythons on macOS runners lack sqlite3 load_extension
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6

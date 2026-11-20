@@ -63,6 +63,11 @@ def connect(readonly: bool = False) -> sqlite3.Connection:
         con = sqlite3.connect(path, timeout=60)
         if new:
             os.chmod(path, 0o600)
+    if not hasattr(con, "enable_load_extension"):
+        raise RuntimeError(
+            "This Python's sqlite3 cannot load extensions (needed for sqlite-vec). "
+            "Use a uv-managed Python: `uv python install 3.13 && uv sync --managed-python`."
+        )
     con.enable_load_extension(True)
     sqlite_vec.load(con)
     con.enable_load_extension(False)
