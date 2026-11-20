@@ -1,0 +1,14 @@
+{
+  "name": "session-rag",
+  "version": "0.1.0",
+  "description": "Private, local search over your past Claude Code sessions: hybrid BM25 + vector retrieval with secret redaction, as an MCP server.",
+  "author": { "name": "Boris Penkovskiy" },
+  "license": "MIT",
+  "keywords": ["memory", "history", "search", "rag", "mcp"],
+  "mcpServers": {
+    "history": {
+      "command": "uvx",
+      "args": ["--quiet", "--from", "${CLAUDE_PLUGIN_ROOT}", "session-rag", "serve"]
+    }
+  }
+}

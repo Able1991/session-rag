@@ -1,0 +1,16 @@
+{
+  "name": "session-rag",
+  "owner": {
+    "name": "Boris Penkovskiy"
+  },
+  "plugins": [
+    {
+      "name": "session-rag",
+      "source": "./",
+      "description": "Private, local search over your past Claude Code sessions (MCP: search_history, get_context)."
+    }
+  ],
+  "metadata": {
+    "description": "session-rag: private, local search over past Claude Code sessions."
+  }
+}

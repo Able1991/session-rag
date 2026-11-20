@@ -1,0 +1,12 @@
+# Example evaluation cases. Copy, replace with questions about your own history, run:
+#   session-rag eval eval/my-cases.toml
+# Paraphrase the questions: reusing words from the answer flatters lexical search.
+
+[[case]]
+query = "which address does our cluster use to reach the internet"
+project = "infra"
+expect = ["egress", "NAT gateway"]
+
+[[case]]
+query = "why did uploads to object storage keep timing out"
+expect = ["ETIMEDOUT"]
