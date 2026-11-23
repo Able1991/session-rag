@@ -1,6 +1,6 @@
 # Contributing
 
-Issues and pull requests are welcome. For a security problem, see [SECURITY.md](SECURITY.md) instead.
+Issues and pull requests are welcome. Please follow the [Code of Conduct](CODE_OF_CONDUCT.md). For a security problem, see [SECURITY.md](SECURITY.md) instead.
 
 ```bash
 uv sync

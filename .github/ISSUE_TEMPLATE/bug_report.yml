@@ -1,0 +1,58 @@
+name: Bug report
+description: Something does not work as documented
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not paste real transcripts, index files or keys. Redact paths and names if needed.
+        Security problems go to a [private advisory](https://github.com/Able1991/session-rag/security/advisories/new), not here.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you ran, what you expected, what you got instead.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. uv run session-rag index
+        2. uv run session-rag search "..."
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Error output
+      description: Full traceback or log lines, with secrets removed.
+      render: text
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Output of `git rev-parse --short HEAD` in your clone.
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: OS and Python
+      placeholder: macOS 15.5, Python 3.13 (uv-managed)
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: How the server runs
+      options:
+        - stdio (one server per session)
+        - shared HTTP server (schedule install --serve)
+        - CLI only
+  - type: input
+    id: stats
+    attributes:
+      label: Index size
+      description: Optional. Chunks and projects from `session-rag projects`.
