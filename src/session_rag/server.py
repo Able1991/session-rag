@@ -16,13 +16,17 @@ from urllib.parse import unquote, urlparse
 
 import anyio
 from mcp.server.mcpserver import Context, MCPServer
-from mcp.types import ClientCapabilities, RootsCapability
+from mcp.types import ClientCapabilities, RootsCapability, ToolAnnotations
 
 from . import config, embed, usage
 from .db import connect
 from .search import context, search
 
 SNIPPET = 900
+
+
+# Every tool only reads the local index: no writes, no network, same answer for the same index.
+READ_ONLY = ToolAnnotations(readOnlyHint=True, destructiveHint=False, idempotentHint=True, openWorldHint=False)
 
 
 def _fmt(r: dict, show_project: bool) -> str:
@@ -93,7 +97,7 @@ def build(default_project: str | None, per_session: bool = False) -> MCPServer:
         "Secrets are masked as ***. History can be outdated: verify against the current state before acting."
     )
 
-    @mcp.tool(description=search_doc)
+    @mcp.tool(description=search_doc, annotations=READ_ONLY)
     async def search_history(
         query: str,
         also: list[str] | None = None,
@@ -121,7 +125,8 @@ def build(default_project: str | None, per_session: bool = False) -> MCPServer:
         return out
 
     @mcp.tool(description="Messages around a search hit (same transcript or document). Args: chunk_id from "
-              "search_history, before/after = how many neighbouring chunks to include.")  # fmt: skip
+              "search_history, before/after = how many neighbouring chunks to include.",
+              annotations=READ_ONLY)  # fmt: skip
     async def get_context(chunk_id: int, before: int = 4, after: int = 4, ctx: Context = None) -> str:
         t = time.perf_counter()
         name = await current.of(ctx)
@@ -149,7 +154,7 @@ def build(default_project: str | None, per_session: bool = False) -> MCPServer:
               "entities. Use for 'what do we know about X' / 'how is X connected to Y'. Only for projects where the "
               "graph was built (`session-rag knowledge build`); otherwise use search_history. "
               "Args: name (any alias, either language), also = other names of the same thing (English/Russian, "
-              "short name, domain), project (default: current).")  # fmt: skip
+              "short name, domain), project (default: current).", annotations=READ_ONLY)  # fmt: skip
     async def knowledge(name: str, also: list[str] | None = None, project: str = "", ctx: Context = None) -> str:
         from .knowledge import page
 

@@ -6,6 +6,7 @@
 ![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)
 ![MCP](https://img.shields.io/badge/MCP-server-8A2BE2)
 ![Local](https://img.shields.io/badge/runs-100%25%20local-success)
+[![M8ven Score](https://m8ven.ai/badge/mcp/able1991-session-rag-2sd7fs?v=13a050aedd7e112534302ab2a62138a5)](https://m8ven.ai/mcp/able1991-session-rag-2sd7fs?s=readme)
 
 **Private, local search over your past Claude Code sessions.** Claude Code keeps every conversation as
 JSONL under `~/.claude/projects`, but a new session can't see any of it. session-rag indexes that history

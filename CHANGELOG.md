@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- MCP tools declare all four annotation hints (read-only, non-destructive, idempotent, closed world).
+
 ## 0.1.0
 
 - `knowledge` (opt-in): entity/fact/relation graph per session day via `claude -p`, facts anchored to chunks;
